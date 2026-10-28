@@ -1,6 +1,7 @@
 git log 
 
 
+<<<<<<< HEAD
 git 
 
 飒飒
@@ -8,3 +9,6 @@ git
 
 
 飒飒  阿萨v
+=======
+git 
+>>>>>>> parent of 7a309aa (修改了文件)
