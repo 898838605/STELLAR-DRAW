@@ -1,0 +1,898 @@
+/* =========================================================
+   STELLAR DRAW · responsive & motion preferences
+   ========================================================= */
+
+@media (max-width: 1320px) {
+  .stage {
+    width: min(100%, 1080px);
+  }
+
+  .prize-now__note {
+    display: none;
+  }
+
+  .guide-rings {
+    width: min(780px, 76vw);
+    height: min(500px, 56vh);
+  }
+
+  .orbital-ambient {
+    width: min(700px, 74vw);
+    height: min(500px, 55vh);
+  }
+}
+
+@media (max-width: 1140px) {
+  .edge-rail {
+    display: none;
+  }
+
+  .topbar {
+    min-height: 78px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .date-stamp,
+  .topbar-divider {
+    display: none;
+  }
+
+  .event-title {
+    max-width: 34vw;
+    font-size: 22px;
+  }
+
+  .round-marquee {
+    grid-template-columns: 1fr minmax(280px, 430px) 1fr;
+  }
+
+  .guide-rings {
+    width: min(760px, 84vw);
+  }
+
+  .page-footer {
+    min-height: 31px;
+  }
+}
+
+@media (max-width: 960px) {
+  .stage {
+    width: min(100%, 880px);
+  }
+
+  .event-overline {
+    display: none;
+  }
+
+  .event-title {
+    font-size: 20px;
+  }
+
+  .console-trigger {
+    padding-right: 12px;
+  }
+
+  .mini-tool__copy > span {
+    font-size: 8px;
+  }
+
+  .mini-tool__icon {
+    width: 33px;
+    height: 33px;
+  }
+
+  .footnote {
+    display: none;
+  }
+}
+
+@media (max-width: 820px) {
+  .topbar {
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+  }
+
+  .event-lockup {
+    display: none;
+  }
+
+  .main {
+    padding: 0 20px;
+  }
+
+  .stage {
+    width: 100%;
+  }
+
+  .round-marquee {
+    min-height: 66px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 14px;
+  }
+
+  .round-state__en {
+    display: none;
+  }
+
+  .prize-now {
+    padding: 0 8px;
+  }
+
+  .prize-now__name {
+    font-size: 21px;
+  }
+
+  .prize-now__stock {
+    display: none;
+  }
+
+  .round-count strong {
+    font-size: 21px;
+  }
+
+  .orbital-zone {
+    min-height: 360px;
+  }
+
+  .guide-rings {
+    width: min(680px, 96vw);
+    height: min(430px, 56vh);
+  }
+
+  .orbit-caption {
+    display: none;
+  }
+
+  .orbit-person {
+    font-size: 8.5px;
+  }
+
+  .control-strip {
+    min-height: 94px;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 12px;
+  }
+
+  .mini-tool__copy > span {
+    display: none;
+  }
+
+  .mini-tool__copy strong {
+    font-size: 19px;
+  }
+
+  .draw-button {
+    width: clamp(250px, 36vw, 296px);
+    height: 68px;
+  }
+
+  .draw-button__label {
+    font-size: 17px;
+  }
+
+  .draw-button__arrow {
+    width: 46px;
+    height: 46px;
+  }
+
+  .draw-button__meta > span:first-child {
+    display: none;
+  }
+
+  .prize-vault {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 11px;
+  }
+
+  .vault-label {
+    display: none;
+  }
+
+  .prize-chip {
+    min-width: 148px;
+    height: 48px;
+  }
+
+  .page-footer {
+    min-height: 28px;
+  }
+
+  .footer-keys {
+    display: none;
+  }
+
+  .drawer {
+    width: min(100vw, 470px);
+  }
+}
+
+@media (max-width: 700px) {
+  .orbit-people {
+    display: none;
+  }
+
+  .guide-cross--b,
+  .guide-cross--c {
+    display: none;
+  }
+
+  .backtype {
+    font-size: 45vw;
+  }
+
+  .mini-tool {
+    display: none;
+  }
+
+  .control-strip {
+    display: flex;
+    min-height: 102px;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 5px;
+  }
+
+  .draw-button {
+    width: clamp(252px, 72vw, 310px);
+    height: 68px;
+    padding-left: 27px;
+  }
+
+  .draw-button__meta > span:first-child {
+    display: block;
+    font-size: 6.5px;
+  }
+
+  .draw-caption {
+    margin-top: 9px;
+    font-size: 9px;
+  }
+
+  .prize-vault {
+    min-height: 66px;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .vault-manage {
+    display: none;
+  }
+
+  .prize-tray {
+    padding: 8px 0;
+  }
+
+  .prize-chip {
+    min-width: 151px;
+    height: 46px;
+  }
+
+  .page-footer {
+    display: none;
+  }
+
+  .drawer-head {
+    padding: 21px 20px 14px;
+  }
+
+  .drawer-title-wrap h2 {
+    font-size: 30px;
+  }
+
+  .drawer-tabs {
+    padding: 0 9px;
+  }
+
+  .drawer-tab {
+    height: 47px;
+    font-size: 10px;
+  }
+
+  .drawer-tab span {
+    display: none;
+  }
+
+  .drawer-body {
+    padding: 22px 20px 30px;
+  }
+
+  .drawer-foot {
+    padding: 0 20px;
+  }
+
+  .panel-heading h3 {
+    font-size: 26px;
+  }
+
+  .metric-card {
+    min-height: 102px;
+  }
+
+  .metric-card strong {
+    font-size: 39px;
+  }
+
+  .toast-region {
+    bottom: calc(18px + env(safe-area-inset-bottom, 0));
+  }
+
+  .toast {
+    max-width: 100%;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 540px) {
+  .topbar {
+    min-height: 65px;
+    padding: 11px 15px;
+  }
+
+  .brand {
+    gap: 8px;
+  }
+
+  .brand-mark {
+    width: 35px;
+    height: 35px;
+  }
+
+  .brand-en {
+    font-size: 9.5px;
+    letter-spacing: 0.13em;
+  }
+
+  .brand-cn {
+    font-size: 8px;
+    letter-spacing: 0.3em;
+  }
+
+  .icon-button {
+    width: 35px;
+    height: 35px;
+  }
+
+  .icon-button .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .console-trigger {
+    width: 35px;
+    height: 35px;
+    justify-content: center;
+    margin-left: 3px;
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  .console-trigger span {
+    display: none;
+  }
+
+  .console-trigger .icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  .topbar-actions {
+    gap: 0;
+  }
+
+  .main {
+    padding: 0 14px;
+  }
+
+  .round-marquee {
+    min-height: 62px;
+    grid-template-columns: 1fr;
+    place-items: center;
+    text-align: center;
+  }
+
+  .round-state,
+  .round-count {
+    display: none;
+  }
+
+  .prize-now {
+    width: 100%;
+    grid-template-columns: 1fr auto;
+    row-gap: 1px;
+    padding: 0 4px;
+  }
+
+  .prize-now__overline {
+    grid-column: 1 / -1;
+    font-size: 6.8px;
+  }
+
+  .prize-now__name {
+    justify-self: end;
+    font-size: 22px;
+  }
+
+  .prize-now__chevron {
+    display: none;
+  }
+
+  .prize-now__stock {
+    display: inline-flex;
+    justify-self: start;
+    height: 18px;
+    font-size: 7px;
+  }
+
+  .orbital-zone {
+    min-height: 330px;
+  }
+
+  .guide-rings {
+    width: 130vw;
+    height: min(400px, 51vh);
+  }
+
+  .orbital-ambient {
+    width: 120vw;
+    height: min(390px, 48vh);
+  }
+
+  .floor-grid {
+    opacity: 0.25;
+  }
+
+  .orb-circular-text {
+    inset: -8%;
+    width: 116%;
+    height: 116%;
+  }
+
+  .orb-shell {
+    padding-top: 16.5%;
+    padding-bottom: 12.5%;
+  }
+
+  .orb-kicker {
+    font-size: 6.5px;
+  }
+
+  .orb-sequence {
+    font-size: 6px;
+  }
+
+  .orb-meta {
+    max-width: 94%;
+    font-size: 8.5px;
+    letter-spacing: 0.08em;
+  }
+
+  .control-strip {
+    min-height: 94px;
+  }
+
+  .draw-button {
+    width: min(82vw, 300px);
+    height: 65px;
+    padding-left: 24px;
+  }
+
+  .draw-button__label {
+    font-size: 16px;
+  }
+
+  .draw-button__meta > span:first-child {
+    display: none;
+  }
+
+  .draw-button__arrow {
+    width: 43px;
+    height: 43px;
+  }
+
+  .draw-caption {
+    max-width: 300px;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 8.5px;
+  }
+
+  .prize-chip {
+    min-width: 138px;
+    padding: 0 9px;
+  }
+
+  .prize-chip__name {
+    font-size: 10px;
+  }
+
+  .prize-chip__stock {
+    font-size: 6.5px;
+  }
+
+  .drawer {
+    width: 100%;
+  }
+
+  .source-options {
+    grid-template-columns: 1fr;
+  }
+
+  .source-card {
+    min-height: 87px;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .source-copy {
+    flex: 1;
+  }
+
+  .source-check {
+    position: static;
+    flex: 0 0 auto;
+  }
+
+  .source-visual {
+    width: 27px;
+    justify-content: center;
+    flex: 0 0 auto;
+  }
+
+  .source-visual--synth {
+    flex-wrap: wrap;
+    align-content: center;
+  }
+
+  .field-row--split {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .field-row--split .field--qty {
+    width: 100%;
+  }
+
+  .theme-choices {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .metric-row {
+    gap: 7px;
+  }
+
+  .metric-card {
+    min-height: 96px;
+    padding: 12px;
+  }
+
+  .metric-card > span {
+    top: 12px;
+    left: 12px;
+  }
+
+  .metric-card strong {
+    font-size: 36px;
+  }
+
+  .history-hero {
+    min-height: 122px;
+  }
+
+  .history-hero strong {
+    font-size: 55px;
+  }
+
+  .history-hero__mark {
+    width: 67px;
+    height: 67px;
+  }
+
+  .confirm-card {
+    padding: 24px 21px;
+  }
+
+  .confirm-actions {
+    gap: 7px;
+  }
+}
+
+@media (max-width: 420px) {
+  .brand-cn {
+    display: none;
+  }
+
+  #fullscreenBtn {
+    display: none;
+  }
+
+  .orbital-zone {
+    min-height: 300px;
+  }
+
+  .draw-button__meta > span:first-child {
+    display: none;
+  }
+
+  .draw-button__label {
+    letter-spacing: 0.14em;
+  }
+
+  .prize-vault {
+    min-height: 61px;
+  }
+
+  .draw-caption {
+    font-size: 8px;
+  }
+
+  .drawer-tab {
+    font-size: 9.5px;
+  }
+
+  .drawer-foot > span:last-child {
+    display: none;
+  }
+
+  .drawer-foot {
+    justify-content: center;
+  }
+}
+
+@media (max-height: 780px) and (min-width: 701px) {
+  .topbar {
+    min-height: 72px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .round-marquee {
+    min-height: 62px;
+  }
+
+  .orbital-zone {
+    min-height: 330px;
+  }
+
+  .orbit-caption {
+    display: none;
+  }
+
+  .control-strip {
+    min-height: 86px;
+  }
+
+  .draw-button {
+    height: 66px;
+  }
+
+  .draw-button__arrow {
+    width: 44px;
+    height: 44px;
+  }
+
+  .draw-caption {
+    margin-top: 6px;
+  }
+
+  .prize-vault {
+    min-height: 65px;
+  }
+
+  .page-footer {
+    min-height: 28px;
+  }
+
+  .guide-rings {
+    height: min(430px, 55vh);
+  }
+}
+
+@media (max-height: 650px) {
+  .topbar {
+    min-height: 61px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .round-marquee {
+    min-height: 52px;
+  }
+
+  .orbital-zone {
+    min-height: 265px;
+  }
+
+  .orbit-caption {
+    display: none;
+  }
+
+  .control-strip {
+    min-height: 78px;
+  }
+
+  .prize-vault {
+    min-height: 59px;
+  }
+
+  .prize-tray {
+    padding: 6px 0;
+  }
+
+  .page-footer {
+    display: none;
+  }
+
+  .draw-button {
+    height: 58px;
+  }
+
+  .draw-button__arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .guide-rings {
+    height: min(350px, 56vh);
+  }
+}
+
+@media (max-width: 700px) and (max-height: 700px) {
+  .orbital-zone {
+    min-height: 286px;
+  }
+
+  .round-marquee {
+    min-height: 57px;
+  }
+
+  .control-strip {
+    min-height: 86px;
+  }
+
+  .prize-vault {
+    min-height: 60px;
+  }
+
+  .draw-button {
+    height: 60px;
+  }
+
+  .theme-choices {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (orientation: landscape) and (max-height: 540px) {
+  .topbar {
+    min-height: 53px;
+    padding: 7px 18px;
+  }
+
+  .main {
+    padding: 0 18px;
+  }
+
+  .round-marquee {
+    min-height: 44px;
+  }
+
+  .stage {
+    display: grid;
+    grid-template-columns: minmax(250px, 0.92fr) minmax(300px, 1.2fr);
+    grid-template-rows: 1fr auto;
+    column-gap: 24px;
+    align-content: center;
+  }
+
+  .round-marquee {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+    padding-top: 4px;
+  }
+
+  .orbital-zone {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    min-height: 295px;
+  }
+
+  .control-strip {
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 0;
+    align-self: end;
+    padding-bottom: 7px;
+  }
+
+  .prize-vault {
+    grid-column: 2;
+    grid-row: 2;
+    min-height: 64px;
+  }
+
+  .round-state,
+  .round-count,
+  .mini-tool,
+  .orbit-caption {
+    display: none;
+  }
+
+  .round-marquee {
+    display: flex;
+    justify-content: center;
+  }
+
+  .prize-now__stock {
+    display: inline-flex;
+  }
+
+  .draw-button {
+    width: 250px;
+    height: 55px;
+  }
+
+  .draw-caption {
+    display: none;
+  }
+
+  .draw-button__arrow {
+    width: 37px;
+    height: 37px;
+  }
+
+  .draw-button__label {
+    font-size: 15px;
+  }
+
+  .page-footer {
+    display: none;
+  }
+
+  .guide-rings {
+    width: 86vw;
+    height: 90vh;
+  }
+
+  .backtype {
+    display: none;
+  }
+
+  .drawer-head {
+    padding-top: 15px;
+    padding-bottom: 10px;
+  }
+
+  .drawer-body {
+    padding-top: 17px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .aurora,
+  .orb-aura,
+  .star-canvas,
+  .cursor-light,
+  .win-rays {
+    animation: none !important;
+  }
+
+  .orb[data-state="drawing"] .orb-name {
+    animation: none !important;
+    filter: blur(1.4px);
+  }
+
+  .orb[data-state="winner"] .orb-name {
+    animation: none !important;
+  }
+}

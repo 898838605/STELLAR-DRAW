@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#050806">
+  <meta name="description" content="星轨抽选 · 一款可以被你完全定制的沉浸式静态抽奖网页">
+  <title>星轨抽选 · STELLAR DRAW</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23050806'/%3E%3Ccircle cx='32' cy='32' r='19' fill='none' stroke='%23d7ff7a' stroke-width='1.5'/%3E%3Cellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%23d7ff7a' stroke-opacity='.5' transform='rotate(-28 32 32)'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23d7ff7a'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/stage.css">
+  <link rel="stylesheet" href="css/controls.css">
+  <link rel="stylesheet" href="css/drawer.css">
+  <link rel="stylesheet" href="css/panels.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <svg class="svg-sprite" aria-hidden="true">
+    <symbol id="icon-arrow" viewBox="0 0 24 24">
+      <path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-arrow-up" viewBox="0 0 24 24">
+      <path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-chevron" viewBox="0 0 24 24">
+      <path d="m8 10 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24">
+      <path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-sliders" viewBox="0 0 24 24">
+      <path d="M4 7h7M15 7h5M4 17h4M12 17h8M11 4v6M8 14v6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-history" viewBox="0 0 24 24">
+      <path d="M4.2 9A8.5 8.5 0 1 1 3.5 12M4 4v5h5M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-expand" viewBox="0 0 24 24">
+      <path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24">
+      <path d="M16 19v-1.6c0-2.1-1.8-3.9-4-3.9H7c-2.2 0-4 1.8-4 3.9V19M9.5 10.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM17 5.2a3.2 3.2 0 0 1 0 6.2M21 19v-1.4c0-1.8-1.3-3.3-3-3.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-gift" viewBox="0 0 24 24">
+      <path d="M4 10h16v10H4zM3 6.5h18V10H3zM12 6.5V20M12 6.5S10.8 3 8 3 6.3 6.5 6.3 6.5H12ZM12 6.5S13.2 3 16 3s1.7 3.5 1.7 3.5H12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24">
+      <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24">
+      <path d="M4 7h16M9.5 3.5h5M7 7l.8 13h8.4L17 7M10 10.5v6M14 10.5v6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-edit" viewBox="0 0 24 24">
+      <path d="m14.5 5.5 4 4M5 19l3.5-.8L19 6.7 16.3 4 5.8 14.5 5 19Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24">
+      <path d="m8 5 11 7-11 7V5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-pause" viewBox="0 0 24 24">
+      <path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-upload" viewBox="0 0 24 24">
+      <path d="M12 16V4M7 9l5-5 5 5M4 16v4h16v-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24">
+      <path d="M12 4v12M7 11l5 5 5-5M4 16v4h16v-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-undo" viewBox="0 0 24 24">
+      <path d="M9 8H4V3M4.5 8A8.5 8.5 0 1 1 3.5 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24">
+      <path d="m5 12.5 4.5 4.5L19 7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24">
+      <circle cx="10.8" cy="10.8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path d="m16 16 4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-music" viewBox="0 0 24 24">
+      <path d="M9 18V6l10-2v12M9 18a3 3 0 1 1-3-3h3v3ZM19 16a3 3 0 1 1-3-3h3v3Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-spark" viewBox="0 0 24 24">
+      <path d="M12 2.5c.4 5.6 3.9 9.1 9.5 9.5-5.6.4-9.1 3.9-9.5 9.5-.4-5.6-3.9-9.1-9.5-9.5 5.6-.4 9.1-3.9 9.5-9.5Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-volume" viewBox="0 0 24 24">
+      <path d="M5 9v6h4l5 4V5L9 9H5ZM18 9.5a4 4 0 0 1 0 5M20.5 7a8 8 0 0 1 0 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-warning" viewBox="0 0 24 24">
+      <path d="M12 8v5M12 17h.01M10.3 3.8 2.4 18a2 2 0 0 0 1.8 3h15.6a2 2 0 0 0 1.8-3L13.7 3.8a2 2 0 0 0-3.4 0Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </svg>
+
+  <div class="scene" aria-hidden="true">
+    <div class="aurora aurora--one"></div>
+    <div class="aurora aurora--two"></div>
+    <div class="aurora aurora--three"></div>
+    <div class="horizon-glow"></div>
+    <div class="grain"></div>
+  </div>
+  <canvas id="starCanvas" class="star-canvas" aria-hidden="true"></canvas>
+  <canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
+  <div class="cursor-light" id="cursorLight" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 52 52">
+            <circle cx="26" cy="26" r="17.5" fill="none" stroke="currentColor" stroke-opacity=".34"/>
+            <ellipse cx="26" cy="26" rx="24" ry="9" fill="none" stroke="currentColor" stroke-opacity=".62" transform="rotate(-28 26 26)"/>
+            <circle cx="26" cy="26" r="3.2" fill="currentColor"/>
+            <circle cx="45.5" cy="13.5" r="1.6" fill="currentColor"/>
+            <path d="M10 10.5c.2 2.8 2 4.6 4.8 4.8-2.8.2-4.6 2-4.8 4.8-.2-2.8-2-4.6-4.8-4.8 2.8-.2 4.6-2 4.8-4.8Z" fill="none" stroke="currentColor" stroke-width=".8"/>
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <span class="brand-en">STELLAR DRAW</span>
+          <span class="brand-cn">星轨抽选</span>
+        </span>
+      </div>
+
+      <button class="event-lockup" id="eventEditButton" title="编辑活动信息">
+        <span class="event-overline"><span></span><span id="eventTagline">FORTUNE, IN MOTION</span></span>
+        <span class="event-title" id="eventTitle">星轨抽选夜</span>
+      </button>
+
+      <div class="topbar-actions">
+        <span class="date-stamp" aria-label="今天的日期">
+          <span id="dateMain">10.27</span>
+          <span id="dateYear">2026</span>
+        </span>
+        <span class="topbar-divider" aria-hidden="true"></span>
+        <button class="icon-button music-quick" id="musicQuickBtn" type="button" aria-label="播放背景音乐" aria-pressed="false" title="播放 / 暂停背景音乐">
+          <span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        </button>
+        <button class="icon-button has-badge" id="historyQuickBtn" type="button" aria-label="查看中奖记录" title="中奖记录">
+          <svg class="icon"><use href="#icon-history"></use></svg>
+          <span class="icon-badge" id="historyCountBadge">0</span>
+        </button>
+        <button class="icon-button" id="fullscreenBtn" type="button" aria-label="进入全屏" title="全屏">
+          <svg class="icon"><use href="#icon-expand"></use></svg>
+        </button>
+        <button class="console-trigger" id="openConsoleBtn" type="button" aria-haspopup="dialog" aria-expanded="false">
+          <span class="console-beacon"></span>
+          <span>布景台</span>
+          <svg class="icon"><use href="#icon-sliders"></use></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="backtype" aria-hidden="true">FORTUNE</div>
+
+      <aside class="edge-rail edge-rail--left" aria-hidden="true">
+        <span class="edge-copy">FORTUNE FAVORS THE BOLD</span>
+        <span class="edge-line"></span>
+        <span class="edge-index">EST. <b>MMXXVI</b></span>
+      </aside>
+
+      <aside class="edge-rail edge-rail--right" aria-hidden="true">
+        <div class="edge-stat">
+          <span>IN ORBIT</span>
+          <strong id="edgePoolCount">18</strong>
+        </div>
+        <span class="edge-line"></span>
+        <div class="edge-coord">
+          <span>SESSION</span>
+          <b id="edgeSession">001</b>
+        </div>
+      </aside>
+
+      <section class="stage" aria-label="抽奖舞台">
+        <div class="round-marquee">
+          <div class="round-state" id="roundStateWrap">
+            <span class="status-beacon" aria-hidden="true"></span>
+            <span class="round-state__copy">
+              <span class="round-state__cn" id="roundStateCn">等待启封</span>
+              <span class="round-state__en" id="roundStateEn">STANDING BY</span>
+            </span>
+          </div>
+
+          <button class="prize-now" id="prizeNowBtn" type="button" title="切换本轮奖品">
+            <span class="prize-now__overline">NOW DRAWING <i></i> 本轮奖品</span>
+            <span class="prize-now__name" id="currentPrizeName">极光限定礼盒</span>
+            <span class="prize-now__note" id="currentPrizeNote">致那个把夜晚点亮的人</span>
+            <span class="prize-now__stock" id="currentPrizeStock">余 1</span>
+            <svg class="icon prize-now__chevron"><use href="#icon-chevron"></use></svg>
+          </button>
+
+          <div class="round-count">
+            <span>CYCLE</span>
+            <strong id="roundIndex">01</strong>
+          </div>
+        </div>
+
+        <div class="orbital-zone" id="orbitalZone">
+          <div class="orbital-ambient" aria-hidden="true"></div>
+          <div class="floor-grid" aria-hidden="true"></div>
+
+          <div class="guide-rings" aria-hidden="true">
+            <span class="guide-ring guide-ring--outer"></span>
+            <span class="guide-ring guide-ring--mid"></span>
+            <span class="guide-ring guide-ring--inner"></span>
+            <span class="guide-orbit guide-orbit--tilted"></span>
+            <span class="guide-cross guide-cross--a">+</span>
+            <span class="guide-cross guide-cross--b">+</span>
+            <span class="guide-cross guide-cross--c">+</span>
+            <span class="guide-cross guide-cross--d">+</span>
+          </div>
+
+          <div class="orbit-people" id="orbitPeople" aria-hidden="true"></div>
+
+          <div class="orb-wrap" id="orbWrap">
+            <div class="win-rays" id="winRays" aria-hidden="true"></div>
+            <div class="orb" id="orb" data-state="idle">
+              <div class="orb-aura" aria-hidden="true"></div>
+              <div class="orb-tick-ring" aria-hidden="true"></div>
+              <div class="orb-dotted-ring" aria-hidden="true"></div>
+              <svg class="orb-circular-text" viewBox="0 0 500 500" aria-hidden="true">
+                <defs>
+                  <path id="orbitTextPath" d="M 250,250 m -207,0 a 207,207 0 1,1 414,0 a 207,207 0 1,1 -414,0"></path>
+                </defs>
+                <text>
+                  <textPath href="#orbitTextPath" startOffset="0">LUCKY STARS ORBIT THE CHOSEN · 星轨所至 · 皆是幸运 · </textPath>
+                </text>
+              </svg>
+
+              <div class="orb-shell">
+                <div class="orb-sheen" aria-hidden="true"></div>
+                <div class="orb-topline">
+                  <span class="orb-kicker" id="orbKicker">DESTINY AWAITS</span>
+                  <span class="orb-sequence" id="orbSequence">SEQ. 001</span>
+                </div>
+
+                <div class="orb-center">
+                  <div class="name-window">
+                    <span class="name-ghost" aria-hidden="true" id="nameGhost">01</span>
+                    <h2 class="orb-name" id="displayName">静候启封</h2>
+                  </div>
+                  <p class="orb-meta" id="displayMeta">星轨已校准，等待你的第一声号令</p>
+                </div>
+
+                <div class="orb-bottomline">
+                  <span class="orb-pool"><span class="orb-pool__dot"></span><span id="orbPoolLabel">18 位候选人</span></span>
+                  <span class="orb-state" id="orbStateLabel">READY</span>
+                </div>
+
+                <div class="winner-mark" id="winnerMark" hidden>
+                  <span>LUCKY</span>
+                  <strong id="winnerMarkNo">01</strong>
+                </div>
+              </div>
+
+              <span class="orb-tick orb-tick--top" aria-hidden="true"></span>
+              <span class="orb-tick orb-tick--right" aria-hidden="true"></span>
+              <span class="orb-tick orb-tick--bottom" aria-hidden="true"></span>
+              <span class="orb-tick orb-tick--left" aria-hidden="true"></span>
+            </div>
+          </div>
+
+          <div class="orbit-caption" aria-hidden="true">
+            <span>THE ORBIT</span>
+            <span>每一个名字，都在靠近自己的时刻</span>
+          </div>
+        </div>
+
+        <div class="control-strip">
+          <button class="mini-tool" id="openPeopleBtn" type="button">
+            <span class="mini-tool__icon"><svg class="icon"><use href="#icon-users"></use></svg></span>
+            <span class="mini-tool__copy"><span>候选名册</span><strong id="peopleToolCount">18</strong></span>
+          </button>
+
+          <div class="draw-cluster">
+            <button class="draw-button" id="drawButton" type="button" aria-keyshortcuts="Space">
+              <span class="draw-button__edge" aria-hidden="true"></span>
+              <span class="draw-button__label" id="drawLabel">启封命运</span>
+              <span class="draw-button__meta">
+                <span id="drawMeta">PRESS SPACE</span>
+                <span class="draw-button__arrow"><svg class="icon"><use href="#icon-arrow"></use></svg></span>
+              </span>
+            </button>
+            <p class="draw-caption">
+              <span id="drawCaptionText">从 <b id="drawCaptionCount">18</b> 位候选人中随机抽选</span>
+              <button class="text-action" id="undoDrawBtn" type="button" hidden>
+                <svg class="icon"><use href="#icon-undo"></use></svg>
+                撤销本轮
+              </button>
+            </p>
+          </div>
+
+          <button class="mini-tool mini-tool--right" id="openPrizesBtn" type="button">
+            <span class="mini-tool__copy"><span>奖池余量</span><strong id="prizeToolCount">11</strong></span>
+            <span class="mini-tool__icon"><svg class="icon"><use href="#icon-gift"></use></svg></span>
+          </button>
+        </div>
+
+        <section class="prize-vault" aria-label="奖池">
+          <div class="vault-label">
+            <span>THE PRIZE VAULT</span>
+            <strong>奖池</strong>
+          </div>
+          <div class="prize-tray" id="prizeTray" role="listbox" aria-label="选择本轮奖品"></div>
+          <button class="vault-manage" id="managePrizesBtn" type="button">
+            管理
+            <svg class="icon"><use href="#icon-arrow-up"></use></svg>
+          </button>
+        </section>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <div class="footer-status">
+        <span class="footer-dot"></span>
+        <span id="footerStatus">LOCAL SESSION · 数据自动保存</span>
+      </div>
+      <div class="footer-keys">
+        <span><kbd>SPACE</kbd> 抽选</span>
+        <span><kbd>F</kbd> 全屏</span>
+        <span><kbd>ESC</kbd> 返回</span>
+      </div>
+    </footer>
+  </div>
+
+  <div class="drawer-layer" id="drawerLayer" hidden>
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    <aside class="drawer" id="consoleDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" tabindex="-1">
+      <header class="drawer-head">
+        <div class="drawer-title-wrap">
+          <span class="drawer-overline">CONTROL ROOM <i></i> <span id="drawerSession">SESSION 001</span></span>
+          <h2 id="drawerTitle">布景台</h2>
+        </div>
+        <button class="drawer-close" id="closeConsoleBtn" type="button" aria-label="关闭布景台">
+          <svg class="icon"><use href="#icon-close"></use></svg>
+        </button>
+      </header>
+
+      <nav class="drawer-tabs" role="tablist" aria-label="布景台分页">
+        <button class="drawer-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="panel-people" id="tab-people" data-tab="people">
+          名单 <span id="tabPeopleCount">18</span>
+        </button>
+        <button class="drawer-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-prizes" id="tab-prizes" data-tab="prizes">
+          奖池 <span id="tabPrizeCount">4</span>
+        </button>
+        <button class="drawer-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-music" id="tab-music" data-tab="music">
+          音律
+        </button>
+        <button class="drawer-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-history" id="tab-history" data-tab="history">
+          记录 <span id="tabHistoryCount">0</span>
+        </button>
+        <button class="drawer-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-settings" id="tab-settings" data-tab="settings">
+          设置
+        </button>
+      </nav>
+
+      <div class="drawer-body" id="drawerBody">
+        <section class="tab-panel is-active" id="panel-people" role="tabpanel" aria-labelledby="tab-people" data-panel="people">
+          <div class="panel-heading">
+            <span class="panel-kicker">THE GUEST LIST</span>
+            <h3>候场名册</h3>
+            <p>每一个名字，都会成为星轨上的光点。</p>
+          </div>
+
+          <div class="metric-row">
+            <div class="metric-card">
+              <span>IN THE POOL</span>
+              <strong id="peopleMetricCount">18</strong>
+              <small>在场候选人</small>
+            </div>
+            <div class="metric-card">
+              <span>AWARDED</span>
+              <strong id="peopleMetricWon">0</strong>
+              <small>已产生幸运者</small>
+            </div>
+          </div>
+
+          <form class="add-form" id="addPeopleForm">
+            <label class="field-label" for="peopleInput">批量添加入场者</label>
+            <div class="textarea-shell">
+              <textarea id="peopleInput" rows="4" maxlength="4000" placeholder="每行一个名字，也可以粘贴逗号分隔的名单&#10;例如：沈知微、顾言、江屿、林晚舟"></textarea>
+              <span class="textarea-corner" aria-hidden="true"></span>
+            </div>
+            <div class="form-foot">
+              <span class="field-help">支持换行、逗号、顿号、分号分隔</span>
+              <button class="button button--solid button--small" type="submit">
+                <svg class="icon"><use href="#icon-plus"></use></svg>
+                加入名册
+              </button>
+            </div>
+          </form>
+
+          <div class="list-toolbar">
+            <label class="search-box">
+              <svg class="icon"><use href="#icon-search"></use></svg>
+              <input id="peopleSearch" type="search" placeholder="搜索名字" aria-label="搜索候选人" autocomplete="off">
+            </label>
+            <button class="button button--text" id="clearPeopleBtn" type="button">清空名单</button>
+          </div>
+
+          <div class="people-list" id="peopleList"></div>
+          <div class="empty-state" id="peopleEmpty" hidden>
+            <span class="empty-orbit" aria-hidden="true"></span>
+            <strong>星轨还没有名字</strong>
+            <p>添加候选人，让第一颗光点归位。</p>
+          </div>
+
+          <label class="switch-row">
+            <span class="switch-copy">
+              <strong>中奖后移出候选池</strong>
+              <small>同一场活动里，每人只领取一次幸运。</small>
+            </span>
+            <input type="checkbox" id="removeWinnersToggle" class="switch-input">
+            <span class="switch-ui" aria-hidden="true"></span>
+          </label>
+        </section>
+
+        <section class="tab-panel" id="panel-prizes" role="tabpanel" aria-labelledby="tab-prizes" data-panel="prizes" hidden>
+          <div class="panel-heading">
+            <span class="panel-kicker">THE PRIZE VAULT</span>
+            <h3>奖项与礼物</h3>
+            <p>为每一次幸运，准备一个值得被记住的名字。</p>
+          </div>
+
+          <div class="metric-row">
+            <div class="metric-card">
+              <span>REMAINING</span>
+              <strong id="prizeMetricRemaining">11</strong>
+              <small>剩余奖品</small>
+            </div>
+            <div class="metric-card">
+              <span>AWARDED</span>
+              <strong id="prizeMetricAwarded">0</strong>
+              <small>已经送出</small>
+            </div>
+          </div>
+
+          <form class="prize-form" id="prizeForm">
+            <input type="hidden" id="prizeEditId">
+            <div class="form-title-row">
+              <span class="field-label" id="prizeFormTitle">新增奖项</span>
+              <button class="button button--text button--tiny" id="cancelPrizeEdit" type="button" hidden>取消编辑</button>
+            </div>
+            <div class="field-row field-row--split">
+              <label class="field">
+                <span>奖品名称</span>
+                <input id="prizeNameInput" type="text" maxlength="24" placeholder="例如：星海旅行基金" required>
+              </label>
+              <label class="field field--qty">
+                <span>数量</span>
+                <input id="prizeQtyInput" type="number" min="1" max="999" value="1" required>
+              </label>
+            </div>
+            <label class="field">
+              <span>颁奖文案 <i>选填</i></span>
+              <input id="prizeNoteInput" type="text" maxlength="40" placeholder="例如：致那个把夜晚点亮的人">
+            </label>
+            <div class="accent-row">
+              <span class="accent-label">奖项光色</span>
+              <div class="accent-choices" id="prizeAccentChoices" role="group" aria-label="奖项光色">
+                <button class="accent-swatch is-active" type="button" data-accent="#d7ff7a" style="--swatch:#d7ff7a" aria-label="极光绿" aria-pressed="true"></button>
+                <button class="accent-swatch" type="button" data-accent="#7ef0c8" style="--swatch:#7ef0c8" aria-label="冰薄荷" aria-pressed="false"></button>
+                <button class="accent-swatch" type="button" data-accent="#efd49b" style="--swatch:#efd49b" aria-label="香槟金" aria-pressed="false"></button>
+                <button class="accent-swatch" type="button" data-accent="#9dd7ff" style="--swatch:#9dd7ff" aria-label="冰蓝" aria-pressed="false"></button>
+                <button class="accent-swatch" type="button" data-accent="#ffad8d" style="--swatch:#ffad8d" aria-label="暮橘" aria-pressed="false"></button>
+              </div>
+            </div>
+            <button class="button button--solid button--wide" type="submit" id="prizeSubmitBtn">
+              <svg class="icon"><use href="#icon-plus"></use></svg>
+              <span>加入奖池</span>
+            </button>
+          </form>
+
+          <div class="section-label">
+            <span>PRIZE QUEUE</span>
+            <span>点击奖项设为下一轮</span>
+          </div>
+          <div class="prize-manage-list" id="prizeManageList"></div>
+          <div class="empty-state empty-state--compact" id="prizeEmpty" hidden>
+            <strong>奖池是空的</strong>
+            <p>添加第一份礼物，让期待有处可去。</p>
+          </div>
+        </section>
+
+        <section class="tab-panel" id="panel-music" role="tabpanel" aria-labelledby="tab-music" data-panel="music" hidden>
+          <div class="panel-heading">
+            <span class="panel-kicker">THE SOUND FIELD</span>
+            <h3>声音与氛围</h3>
+            <p>给这一刻一段专属的配乐。内置声景，也可以载入你的音乐。</p>
+          </div>
+
+          <div class="source-options" role="group" aria-label="音乐来源">
+            <button class="source-card" id="synthSourceBtn" type="button" data-source="synth" aria-pressed="true">
+              <span class="source-visual source-visual--synth" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              </span>
+              <span class="source-copy">
+                <strong>极光合成器</strong>
+                <small>AURORA SYNTH · 内置生成式声景</small>
+              </span>
+              <span class="source-check"><svg class="icon"><use href="#icon-check"></use></svg></span>
+            </button>
+            <button class="source-card" id="fileSourceBtn" type="button" data-source="file" aria-pressed="false">
+              <span class="source-visual source-visual--file" aria-hidden="true">
+                <svg class="icon"><use href="#icon-music"></use></svg>
+              </span>
+              <span class="source-copy">
+                <strong>我的音乐</strong>
+                <small>LOCAL TRACKS · <span id="trackCountLabel">0</span> 首已载入</small>
+              </span>
+              <span class="source-check"><svg class="icon"><use href="#icon-check"></use></svg></span>
+            </button>
+          </div>
+
+          <div class="music-player-card">
+            <div class="player-orb" id="playerOrb" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <div class="player-copy">
+              <span class="player-kicker" id="playerKicker">AURORA SYNTH</span>
+              <strong id="playerTitle">极光生成式声景</strong>
+              <small id="playerSubtitle">为抽选而生 · 无版权限制</small>
+            </div>
+            <button class="player-toggle" id="musicPlayBtn" type="button" aria-label="播放">
+              <svg class="icon play-icon"><use href="#icon-play"></use></svg>
+              <svg class="icon pause-icon"><use href="#icon-pause"></use></svg>
+            </button>
+          </div>
+
+          <div class="volume-row">
+            <svg class="icon"><use href="#icon-volume"></use></svg>
+            <input type="range" id="volumeSlider" min="0" max="100" value="52" aria-label="音乐音量">
+            <span id="volumeValue">52</span>
+          </div>
+
+          <div class="upload-zone" id="musicDropzone" role="button" tabindex="0" aria-label="上传音乐文件">
+            <input type="file" id="musicFileInput" accept="audio/*" multiple hidden>
+            <span class="upload-icon"><svg class="icon"><use href="#icon-upload"></use></svg></span>
+            <strong>拖入音乐文件，或点击上传</strong>
+            <small>MP3 / WAV / OGG / M4A · 保存在本机浏览器</small>
+          </div>
+
+          <div class="track-list" id="musicTrackList"></div>
+          <div class="music-empty" id="musicEmpty">
+            还没有上传音乐。选一首最能把气氛推上顶点的歌。
+          </div>
+
+          <p class="fine-print">
+            <svg class="icon"><use href="#icon-warning"></use></svg>
+            音乐文件只保存在当前浏览器，不会上传到任何服务器。首次播放需要先与页面互动。
+          </p>
+        </section>
+
+        <section class="tab-panel" id="panel-history" role="tabpanel" aria-labelledby="tab-history" data-panel="history" hidden>
+          <div class="panel-heading">
+            <span class="panel-kicker">THE HALL OF FAME</span>
+            <h3>今晚的幸运者</h3>
+            <p>每一个被念出的名字，都会留在这一夜。</p>
+          </div>
+
+          <div class="history-hero">
+            <div>
+              <span>WINNERS RECORDED</span>
+              <strong id="historyMetricCount">0</strong>
+            </div>
+            <svg class="history-hero__mark" viewBox="0 0 100 100" aria-hidden="true">
+              <circle cx="50" cy="50" r="37" fill="none" stroke="currentColor" stroke-opacity=".25"/>
+              <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-opacity=".12" stroke-dasharray="2 6"/>
+              <path d="M50 24c2 14 10 22 24 24-14 2-22 10-24 24-2-14-10-22-24-24 14-2 22-10 24-24Z" fill="none" stroke="currentColor"/>
+            </svg>
+          </div>
+
+          <div class="history-list" id="historyList"></div>
+          <div class="empty-state empty-state--compact" id="historyEmpty" hidden>
+            <span class="empty-orbit" aria-hidden="true"></span>
+            <strong>幸运尚未发生</strong>
+            <p>当第一个名字被念出，记录会留在这里。</p>
+          </div>
+
+          <div class="history-actions">
+            <button class="button button--outline" id="undoLatestBtn" type="button" hidden>
+              <svg class="icon"><use href="#icon-undo"></use></svg>
+              撤销最近一轮
+            </button>
+            <button class="button button--text" id="clearHistoryBtn" type="button" hidden>清空记录</button>
+          </div>
+        </section>
+
+        <section class="tab-panel" id="panel-settings" role="tabpanel" aria-labelledby="tab-settings" data-panel="settings" hidden>
+          <div class="panel-heading">
+            <span class="panel-kicker">THE RITUAL SETUP</span>
+            <h3>仪式设定</h3>
+            <p>调整这场抽选的语气、色彩与规则。</p>
+          </div>
+
+          <form class="settings-form" id="settingsForm">
+            <label class="field">
+              <span>活动名称</span>
+              <input id="eventTitleInput" type="text" maxlength="24" placeholder="星轨抽选夜">
+            </label>
+            <label class="field">
+              <span>英文副标题 <i>显示在标题上方</i></span>
+              <input id="eventTaglineInput" type="text" maxlength="48" placeholder="FORTUNE, IN MOTION">
+            </label>
+
+            <div class="field">
+              <span>氛围光色</span>
+              <div class="theme-choices" id="themeChoices" role="group" aria-label="氛围光色">
+                <button class="theme-choice is-active" type="button" data-theme="aurora" style="--theme-color:#d7ff7a" aria-pressed="true">
+                  <i></i><span>极光</span>
+                </button>
+                <button class="theme-choice" type="button" data-theme="champagne" style="--theme-color:#efd49b" aria-pressed="false">
+                  <i></i><span>香槟</span>
+                </button>
+                <button class="theme-choice" type="button" data-theme="glacier" style="--theme-color:#a9e8ff" aria-pressed="false">
+                  <i></i><span>冰川</span>
+                </button>
+                <button class="theme-choice" type="button" data-theme="ember" style="--theme-color:#ffb184" aria-pressed="false">
+                  <i></i><span>余烬</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="settings-toggles">
+              <label class="switch-row switch-row--plain">
+                <span class="switch-copy">
+                  <strong>抽选音效</strong>
+                  <small>数字翻涌、揭晓提示音。</small>
+                </span>
+                <input type="checkbox" id="sfxToggle" class="switch-input" checked>
+                <span class="switch-ui" aria-hidden="true"></span>
+              </label>
+              <label class="switch-row switch-row--plain">
+                <span class="switch-copy">
+                  <strong>粒子庆典</strong>
+                  <small>揭晓时绽放极光粒子。</small>
+                </span>
+                <input type="checkbox" id="particlesToggle" class="switch-input" checked>
+                <span class="switch-ui" aria-hidden="true"></span>
+              </label>
+            </div>
+
+            <button class="button button--solid button--wide" type="submit">保存仪式设定</button>
+          </form>
+
+          <div class="section-label section-label--spaced">
+            <span>DATA &amp; SESSION</span>
+            <span>本机数据</span>
+          </div>
+          <div class="data-actions">
+            <button class="data-action" id="exportBtn" type="button">
+              <span class="data-action__icon"><svg class="icon"><use href="#icon-download"></use></svg></span>
+              <span><strong>导出配置</strong><small>名单、奖池与记录</small></span>
+              <svg class="icon data-action__arrow"><use href="#icon-arrow"></use></svg>
+            </button>
+            <button class="data-action" id="importBtn" type="button">
+              <span class="data-action__icon"><svg class="icon"><use href="#icon-upload"></use></svg></span>
+              <span><strong>导入配置</strong><small>从 JSON 恢复一场仪式</small></span>
+              <svg class="icon data-action__arrow"><use href="#icon-arrow"></use></svg>
+            </button>
+            <input type="file" id="importInput" accept="application/json,.json" hidden>
+            <button class="data-action data-action--danger" id="resetBtn" type="button">
+              <span class="data-action__icon"><svg class="icon"><use href="#icon-undo"></use></svg></span>
+              <span><strong>恢复演示数据</strong><small>清空当前进度并重新开始</small></span>
+              <svg class="icon data-action__arrow"><use href="#icon-arrow"></use></svg>
+            </button>
+          </div>
+
+          <p class="fine-print">
+            <svg class="icon"><use href="#icon-check"></use></svg>
+            所有名单、奖项与记录仅保存在此浏览器的 localStorage 中。没有后台，没有上传。
+          </p>
+        </section>
+      </div>
+
+      <footer class="drawer-foot">
+        <span><i class="footer-dot"></i> 数据仅保存在此设备</span>
+        <span>STELLAR DRAW <b>/</b> V.01</span>
+      </footer>
+    </aside>
+  </div>
+
+  <div class="modal-layer" id="confirmLayer" hidden>
+    <div class="modal-backdrop" id="confirmBackdrop"></div>
+    <div class="confirm-card" role="alertdialog" aria-modal="true" aria-labelledby="confirmTitle" aria-describedby="confirmMessage" tabindex="-1">
+      <span class="confirm-kicker">PLEASE CONFIRM</span>
+      <h3 id="confirmTitle">确认操作</h3>
+      <p id="confirmMessage"></p>
+      <div class="confirm-actions">
+        <button class="button button--outline" id="confirmCancelBtn" type="button">取消</button>
+        <button class="button button--solid" id="confirmOkBtn" type="button">确认</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toastRegion" role="status" aria-live="polite" aria-atomic="false"></div>
+  <div class="sr-only" id="liveRegion" aria-live="assertive" aria-atomic="true"></div>
+
+  <audio id="bgAudio" loop preload="metadata"></audio>
+
+  <script src="js/core.js" defer></script>
+  <script src="js/audio.js" defer></script>
+  <script src="js/effects.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>
