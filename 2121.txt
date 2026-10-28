@@ -2,6 +2,7 @@ git log
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 git 
 
 飒飒
@@ -12,3 +13,8 @@ git
 =======
 git 
 >>>>>>> parent of 7a309aa (修改了文件)
+=======
+git 
+>>>>>>> parent of 7a309aa (修改了文件)
+
+飒飒
